@@ -10,7 +10,10 @@ import acm.util.*;
 import java.util.*;
 
 public class NameSurferEntry implements NameSurferConstants {
-
+	/**
+	 * The given line.
+	 */
+	String Line;
 	/* Constructor: NameSurferEntry(line) */
 	/**
 	 * Creates a new NameSurferEntry from a data line as it appears
@@ -19,7 +22,7 @@ public class NameSurferEntry implements NameSurferConstants {
 	 * decade.
 	 */
 	public NameSurferEntry(String line) {
-		// You fill this in //
+		Line = line;
 	}
 
 	/* Method: getName() */
@@ -50,8 +53,7 @@ public class NameSurferEntry implements NameSurferConstants {
 	 * NameSurferEntry.
 	 */
 	public String toString() {
-		// You need to turn this stub into a real implementation //
-		return "";
+		return Line;
 	}
 }
 

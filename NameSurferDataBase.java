@@ -1,3 +1,5 @@
+import java.io.*;
+
 /*
  * File: NameSurferDataBase.java
  * -----------------------------
@@ -10,7 +12,7 @@
  */
 
 public class NameSurferDataBase implements NameSurferConstants {
-	
+	String Filename;
 	/* Constructor: NameSurferDataBase(filename) */
 	/**
 	 * Creates a new NameSurferDataBase and initializes it using the
@@ -19,7 +21,7 @@ public class NameSurferDataBase implements NameSurferConstants {
 	 * occurs as the file is being read.
 	 */
 	public NameSurferDataBase(String filename) {
-		// You fill this in //
+		Filename = filename;
 	}
 	
 	/* Method: findEntry(name) */
@@ -29,8 +31,43 @@ public class NameSurferDataBase implements NameSurferConstants {
 	 * method returns null.
 	 */
 	public NameSurferEntry findEntry(String name) {
-		// You need to turn this stub into a real implementation //
+		BufferedReader NameFinder;
+		String Line = null;
+		try {
+			NameFinder = new BufferedReader(new FileReader(Filename));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		try {
+			Line = NameFinder.readLine();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Line reading failed");
+		}
+		while(Line != null) {
+			if(firstWordEqualsName(Line, name)) {
+				return (new NameSurferEntry(Line));
+			}
+			try {
+				Line = NameFinder.readLine();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("Line reading failed");
+			}
+		}
 		return null;
 	}
+	
+	
+	 private boolean firstWordEqualsName(String Line, String Name) {
+		 for(int Character = 0; Character < Name.length(); Character++) {
+			 if(Line.charAt(Character) != Name.charAt(Character)) {
+				 return false;
+			 }
+		 }
+		 return true;
+	 }
 }
 

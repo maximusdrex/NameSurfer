@@ -14,7 +14,7 @@ import java.awt.*;
 
 public class NameSurferGraph extends GCanvas
 	implements NameSurferConstants, ComponentListener {
-
+	int Decades = 11;
 	/**
 	 * Creates a new NameSurferGraph object that displays the data.
 	 */
@@ -51,7 +51,12 @@ public class NameSurferGraph extends GCanvas
 	 * the size of the canvas changes.
 	 */
 	public void update() {
-		// You fill this in //
+		removeAll();
+		int LineSpacing = getWidth() / Decades;
+		for(int Decade = 0; Decade < Decades; Decade++) {
+			add(new GLine(Decade * LineSpacing, 0, Decade * LineSpacing, getHeight()));
+			add(new GLabel(Integer.toString(1900 + (10 * Decade)), Decade * LineSpacing + 5, getHeight()));
+		}
 	}
 	
 	

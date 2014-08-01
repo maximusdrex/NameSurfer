@@ -18,7 +18,7 @@ public class NameSurfer extends ConsoleProgram implements NameSurferConstants {
 	 * and initializing the interactors at the top of the window.
 	 */
 	public void init() {
-	    String GUIButtonLocation = NORTH;
+		String GUIButtonLocation = NORTH;
 		Graph = new NameSurferGraph();
 		int FieldLength = 8;
 		NameField = new JTextField(FieldLength);
@@ -38,12 +38,13 @@ public class NameSurfer extends ConsoleProgram implements NameSurferConstants {
 	 * button actions.
 	 */
 	public void actionPerformed(ActionEvent e) {
+		NameSurferDataBase DataBase = new NameSurferDataBase(NAMES_DATA_FILE);
 		String cmd = e.getActionCommand();
 		if(cmd == "Graph") {
 			String Name = NameField.getText();
 			println(Name);
-			//NameSurferEntry Entry = new NameSurferEntry(*Fill This in);
-			//Graph.addEntry(Entry);
+			NameSurferEntry Entry = DataBase.findEntry(NameField.getText());
+			if(Entry != null) Graph.addEntry(Entry);
 		}
 	}
 }
